@@ -1,0 +1,44 @@
+version: '3.4'
+
+services:
+  qualitymanager:
+    image: ${DOCKER_REGISTRY-}qualitymanager
+    build:
+      context: .
+      dockerfile: QualityManager/Dockerfile
+    ports:
+        - '7047:8081'
+        - '7048:8080'     
+    depends_on:
+      - "rabbitmq"
+      - "postgesql"
+
+  rabbitmq:
+    container_name: "rabbitmqcontainer"
+    image: rabbitmq:management
+    hostname: "rabbitmq"
+    ports:
+        - '5672:5672'
+        - '15672:15672'
+
+  analysisengine:
+    image: ${DOCKER_REGISTRY-}analysisengine
+    build:
+      context: .
+      dockerfile: AnalysisEngine/Dockerfile
+    depends_on:
+      - "rabbitmq"
+
+  postgesql:
+    container_name: postgesql
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=root
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+
+volumes:
+  db_volume:
