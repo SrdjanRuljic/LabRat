@@ -1,8 +1,8 @@
 ﻿namespace Application.Common.Interfaces
 {
-    public interface IAnalysis
+    public interface IAnalysisMessage
     {
-        Domain.Enums.AnalysisTypes AnalysisType { get; }
+        string AnalysisType { get; }
         DateTime DateTime { get; }
         string SerialNumber { get; }
     }

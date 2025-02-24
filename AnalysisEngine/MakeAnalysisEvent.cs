@@ -4,9 +4,9 @@ using System.Text.Json;
 
 namespace AnalysisEngine
 {
-    public class MakeAnalysisEvent : IConsumer<IAnalysis>
+    public class MakeAnalysisEvent : IConsumer<IAnalysisMessage>
     {
-        public async Task Consume(ConsumeContext<IAnalysis> context)
+        public async Task Consume(ConsumeContext<IAnalysisMessage> context)
         {
             string serializedMessage = JsonSerializer.Serialize(context.Message, new JsonSerializerOptions { });
 

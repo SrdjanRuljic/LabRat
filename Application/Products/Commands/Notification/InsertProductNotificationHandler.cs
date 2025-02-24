@@ -10,11 +10,11 @@ namespace Application.Products.Commands.Notification
     {
         public async Task Handle(InsertProductNotification notification, CancellationToken cancellationToken)
         {
-            await publishEndpoint.Publish<IAnalysis>(new
+            await publishEndpoint.Publish<IAnalysisMessage>(new
             {
-                Id = notification.Id,
+                notification.SerialNumber,
                 DateTime = dateTimeService.Now,
-                Domain.Enums.AnalysisTypes.Nutritional
+                notification.AnalysisType
             }, cancellationToken);
         }
     }

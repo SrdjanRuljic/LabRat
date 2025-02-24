@@ -4,6 +4,7 @@ namespace Application.Products.Commands.Notification
 {
     public class InsertProductNotification : INotification
     {
-        public Guid Id { get; set; }
+        public string AnalysisType { get; set; } = string.Empty;
+        public string SerialNumber { get; set; } = string.Empty;
     }
 }
