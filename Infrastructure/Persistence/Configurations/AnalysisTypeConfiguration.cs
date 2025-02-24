@@ -8,6 +8,8 @@ namespace Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<AnalysisType> builder)
         {
+            builder.Property(x => x.Name)
+                .IsRequired();
         }
     }
 }

@@ -37,6 +37,18 @@ namespace Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AnalysisTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Name = "Microbiological"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Name = "Nutritional"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Product", b =>

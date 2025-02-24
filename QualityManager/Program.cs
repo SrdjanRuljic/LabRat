@@ -35,7 +35,6 @@ if (app.Environment.IsDevelopment())
         var cancellationToken = app.Lifetime.ApplicationStopping;
 
         await initializer.InitialiseAsync(cancellationToken);
-        await initializer.SeedAsync(cancellationToken);
     }
 
     app.UseSwagger();

@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace AnalysisEngine
 {
-    public class Analysis : IConsumer<IAnalysis>
+    public class MakeAnalysisEvent : IConsumer<IAnalysis>
     {
         public async Task Consume(ConsumeContext<IAnalysis> context)
         {

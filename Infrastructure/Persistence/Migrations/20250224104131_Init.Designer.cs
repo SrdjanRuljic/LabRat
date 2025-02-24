@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250220143825_Init")]
+    [Migration("20250224104131_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -40,6 +40,18 @@ namespace Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AnalysisTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Name = "Microbiological"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Name = "Nutritional"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Product", b =>

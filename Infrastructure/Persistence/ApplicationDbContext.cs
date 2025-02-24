@@ -67,6 +67,11 @@ namespace Infrastructure.Persistence
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
             modelBuilder.ApplyUtcDateTimeConverter();
+
+            modelBuilder.Entity<AnalysisType>().HasData(
+                new AnalysisType { Id = 1, Name = Domain.Enums.AnalysisTypes.Microbiological.ToString() },
+                new AnalysisType { Id = 2, Name = Domain.Enums.AnalysisTypes.Nutritional.ToString() }
+            );
         }
     }
 }
