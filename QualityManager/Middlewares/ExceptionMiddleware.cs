@@ -2,7 +2,7 @@
 using Application.Common.Extensions;
 using Application.Common.Exceptions;
 
-namespace QualityManager._1_QualityManager
+namespace QualityManager.Middlewares
 {
     public static class CustomExceptionHandlerMiddlewareExtensions
     {

@@ -3,7 +3,7 @@ using Application.Common.Interfaces;
 using FluentValidation.AspNetCore;
 using Infrastructure;
 using Infrastructure.Persistence;
-using QualityManager._1_QualityManager;
+using QualityManager.Middlewares;
 using QualityManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
