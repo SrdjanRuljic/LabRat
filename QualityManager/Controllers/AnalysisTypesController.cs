@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace QualityManager.Controllers
 {
-    public class AnalysisTypesController(ISender? sender) : BaseController(sender)
+    public class AnalysisTypesController(ISender sender) : BaseController(sender)
     {
         #region [GET]
 
@@ -12,7 +12,7 @@ namespace QualityManager.Controllers
         [Route("")]
         public async Task<IActionResult> GetAll()
         {
-            var list = await Sender?.Send(new GetAllQuery())!;
+            var list = await Sender.Send(new GetAllQuery())!;
 
             return Ok(list);
         }
