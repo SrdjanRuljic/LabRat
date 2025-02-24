@@ -1,5 +1,4 @@
 ﻿using Application.Common.Interfaces;
-using Application.Exceptions;
 using Application.Products.Commands.Notification;
 using Domain.Entities;
 using MediatR;
@@ -12,18 +11,15 @@ namespace Application.Products.Commands
     {
         public async Task<Guid> Handle(InsertProductCommand request, CancellationToken cancellationToken)
         {
-            if (!request.IsValid(out var errorMessage))
-                throw new BadRequestException(errorMessage);
-
             var entity = new Product
             {
                 Name = request.Name,
                 SerialNumber = request.SerialNumber
             };
 
-            if (request.AnalysisTypeIds != null && request.AnalysisTypeIds.Any())
+            if (request.AnalysisTypeIds != null && request.AnalysisTypeIds.Count != 0)
             {
-                entity.ProductAnalysisTypes = new List<ProductAnalysisTypes>();
+                entity.ProductAnalysisTypes = [];
 
                 foreach (long id in request.AnalysisTypeIds)
                 {
@@ -37,7 +33,7 @@ namespace Application.Products.Commands
 
             context.Products.Add(entity);
 
-            //await context.SaveChangesAsync(cancellationToken);
+            await context.SaveChangesAsync(cancellationToken);
 
             await mediator.Publish(new InsertProductNotification()
             {

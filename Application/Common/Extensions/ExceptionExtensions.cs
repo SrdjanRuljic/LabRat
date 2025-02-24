@@ -24,5 +24,12 @@ namespace Application.Common.Extensions
             response.Headers.Add("Access-Control-Expose-Headers", "Not-Found-Exception");
             response.Headers.Add("Access-Control-Allow-Origin", "*");
         }
+
+        public static void AddValidationExtension(this HttpResponse response, string message)
+        {
+            response.Headers.Add("Validation-Exception", message);
+            response.Headers.Add("Access-Control-Expose-Headers", "Validation-Exception");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+        }
     }
 }

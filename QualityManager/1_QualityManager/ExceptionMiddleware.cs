@@ -1,6 +1,6 @@
-﻿using Application.Exceptions;
-using System.Net;
+﻿using System.Net;
 using Application.Common.Extensions;
+using Application.Common.Exceptions;
 
 namespace QualityManager._1_QualityManager
 {
@@ -40,6 +40,11 @@ namespace QualityManager._1_QualityManager
                 case NotFoundException:
                     context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                     context.Response.AddNotFoundExtension(exception.Message);
+                    break;
+
+                case ValidationException:
+                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    context.Response.AddValidationExtension(exception.Message);
                     break;
 
                 default:

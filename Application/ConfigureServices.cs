@@ -1,4 +1,6 @@
 ﻿using Application.Common.Behaviours;
+using Application.Products.Commands;
+using FluentValidation;
 using MassTransit;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +17,8 @@ namespace Application
             services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingExceptionBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+
+            services.AddValidatorsFromAssemblyContaining<InsertProductCommandValidator>();
 
             services.AddMassTransit(busConfigurator =>
             {
